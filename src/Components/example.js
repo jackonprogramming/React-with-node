@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { CircularProgress } from "@material-ui/core";
-import { getMessage, postMessage } from "../API/response";
+import { postMessage } from "../API/response";
 
-const Testing = () => {
+const Testing = (props) => {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(true);
 
   const getResponse = async () => {
-    await postMessage("message")
+    await postMessage("message?error=ok")
       .then((res) => {
         setMessage(res.data.data);
         setLoading(false);
       })
-      .catch(() => {
+      .catch((error) => {
+        console.log(error);
+        setMessage(error.data);
+        setLoading(false);
         // console.log("error");
       });
   };

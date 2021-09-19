@@ -16,15 +16,13 @@ export const getMessage = async (url) => {
 };
 
 export const postMessage = async (url) => {
-  return await axios
-    .post(BASEURL + url)
-    .then((res) => {
-      return res;
+  return await axios.post(BASEURL + url).then((res) => {
+    return res;
 
-      // const persons = res.data;
-      // this.setState({ persons });
-    })
-    .catch(() => {
-      return "can't get data";
-    });
+    // const persons = res.data;
+    // this.setState({ persons });
+  });
+  // .catch(() => {
+  //   console.log("holis");
+  // });
 };
