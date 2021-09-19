@@ -1,18 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { CircularProgress } from "@material-ui/core";
-import axios from "axios";
+import { getMessage, postMessage } from "../API/response";
 
 const Testing = () => {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    axios.post(`http://localhost:3000/message?error=ok`).then((res) => {
-      setMessage(res.data.body);
-      setLoading(false);
 
-      // const persons = res.data;
-      // this.setState({ persons });
-    });
+  const getResponse = async () => {
+    await postMessage("message")
+      .then((res) => {
+        setMessage(res.data.data);
+        setLoading(false);
+      })
+      .catch(() => {
+        // console.log("error");
+      });
+  };
+
+  useEffect(() => {
+    getResponse();
   }, []);
   return (
     <div>
