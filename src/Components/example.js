@@ -14,7 +14,7 @@ const Testing = (props) => {
       })
       .catch((error) => {
         console.log(error);
-
+        console.log("error");
         setMessage(error.data);
         setLoading(false);
         // console.log("error");
